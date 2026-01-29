@@ -1,21 +1,21 @@
-<form [formGroup]="form">
+<form>
   <div class="flex flex-col">
     <mat-form-field>
       <mat-label>Pet Name</mat-label>
-      <input formControlName="name" matInput/>
+      <input [formField]="form.name" matInput/>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Date of Birth</mat-label>
-      <input [matDatepicker]="picker" formControlName="dateOfBirth" matInput>
+      <input [formField]="form.dateOfBirth" [matDatepicker]="picker" matInput>
       <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Species</mat-label>
-      <mat-select formControlName="species">
-        @for (specie of species; track specie) {
+      <mat-select [formField]="form.species">
+        @for (specie of DataService.species; track specie) {
           <mat-option [value]="specie">{{ specie }}</mat-option>
         }
       </mat-select>
@@ -23,8 +23,8 @@
 
     <mat-form-field>
       <mat-label>Breed</mat-label>
-      <mat-select formControlName="breed">
-        @for (breed of breedOptions; track breed) {
+      <mat-select [formField]="form.breed">
+        @for (breed of breedOptions(); track breed) {
           <mat-option [value]="breed">{{ breed }}</mat-option>
         }
       </mat-select>
@@ -32,10 +32,10 @@
   </div>
 </form>
 
-@let name = form.value.name;
-@let specie = form.value.species;
-@let breed = form.value.breed;
+@let name = form.name().value();
+@let specie = form.species().value();
+@let breed = form.breed().value();
 
 @if (name && specie && breed) {
-  <p>The {{ specie | lowercase }}, {{ name }}, a(n) {{ breed }}, is {{ age }} years old</p>
+  <p>The {{ specie | lowercase }}, {{ name }}, a(n) {{ breed }}, is {{ age() }} years old</p>
 }

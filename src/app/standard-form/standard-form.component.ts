@@ -1,25 +1,55 @@
-import {Component} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {tap} from 'rxjs';
+import {LowerCasePipe} from '@angular/common';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
+import {DateUtility} from '../date.utility';
 
 @Component({
   selector: 'app-standard-form',
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+    MatInput,
+    MatSelect,
+    MatOption,
+    MatFormField,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatDatepickerInput,
+    MatLabel,
+    MatSuffix,
+    LowerCasePipe
+  ],
   templateUrl: './standard-form.component.html',
-  styleUrl: './standard-form.component.css'
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StandardFormComponent {
-  private readonly species = ["Dog", "Cat"];
+  protected breedOptions: string[] = [];
+  protected readonly form = new FormGroup({
+    name: new FormControl(""),
+    dateOfBirth: new FormControl(new Date()),
+    species: new FormControl(""),
+    breed: new FormControl(""),
+  })
+  protected age = 0;
+  protected readonly species = ["Dog", "Cat"];
   private readonly breeds = {
     "Dog": ["Lab", "Beagle", "Great Dane"],
     "Cat": ["Sphynx", "American Shorthair", "American Wirehair"]
   };
-  private readonly form = new FormGroup({
-    name: new FormControl(""),
-    species: new FormControl(""),
-    breed: new FormControl(""),
-  })
 
   constructor() {
-    this.form.controls["species"].valueChanges
+    this.form.controls.species.valueChanges
+      .pipe(
+        tap(x => {
+          this.breedOptions = this.breeds[x];
+          this.form.controls.breed.reset();
+        })
+      )
+      .subscribe()
+
+    this.form.controls.dateOfBirth.valueChanges.pipe(tap(x => this.age = DateUtility.calculateAge(x))).subscribe();
   }
 }
