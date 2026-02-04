@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  <div class="flex flex-col">
+    <mat-form-field>
+      <mat-label>Multiplier</mat-label>
+      <input formControlName="multiplier" inputmode="numeric" matInput required/>
+    </mat-form-field>
+  </div>
+</form>
+<button (click)="counterStore.incrementCount()" matButton="filled">Increment</button>
+
+Count: {{ counterStore.count() }}
+Multiplied Result: {{ multipliedResult() }}
