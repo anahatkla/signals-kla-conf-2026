@@ -3,6 +3,9 @@
     <mat-form-field>
       <mat-label>Pet Name</mat-label>
       <input [formField]="form.name" matInput/>
+      <mat-error>
+        <!--        <app-form-errors [signalErrors]="form.name().errors()"></app-form-errors>-->
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -10,6 +13,9 @@
       <input [formField]="form.dateOfBirth" [matDatepicker]="picker" matInput>
       <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error>
+        <!--        <app-form-errors [signalErrors]="form.dateOfBirth().errors()"></app-form-errors>-->
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>

@@ -2,10 +2,11 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {tap} from 'rxjs';
 import {LowerCasePipe} from '@angular/common';
-import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
 import {DateUtility} from '../date.utility';
+import {FormErrorsComponent} from '../form-errors/form-errors.component';
 
 @Component({
   selector: 'app-standard-form',
@@ -20,7 +21,9 @@ import {DateUtility} from '../date.utility';
     MatDatepickerInput,
     MatLabel,
     MatSuffix,
-    LowerCasePipe
+    LowerCasePipe,
+    FormErrorsComponent,
+    MatError
   ],
   templateUrl: './standard-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush

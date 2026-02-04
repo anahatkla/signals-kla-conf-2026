@@ -1,11 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {StandardFormComponent} from './standard-form/standard-form.component';
 import {provideNativeDateAdapter} from '@angular/material/core';
-import {SignalFormComponent} from './signal-form/signal-form.component';
+import {SignalCounterWithStoreComponent} from './signal-counter-with-store/signal-counter-with-store.component';
 
 @Component({
   selector: 'app-root',
-  imports: [StandardFormComponent, SignalFormComponent],
+  imports: [SignalCounterWithStoreComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [provideNativeDateAdapter()],
