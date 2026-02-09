@@ -9,4 +9,5 @@
 <button (click)="counterStore.incrementCount()" matButton="filled">Increment</button>
 
 Count: {{ counterStore.count() }}
-Multiplied Result: {{ multipliedResult() }}
+Multiplied Result Signal: {{ multipliedResult() }}
+Multiplied Result Observable: {{ multipliedResult$ | async }}
