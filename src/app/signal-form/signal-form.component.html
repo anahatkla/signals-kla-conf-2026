@@ -32,13 +32,32 @@
         }
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Minimum Number of Treats</mat-label>
+      <input [formField]="form.minimumTreats" matInput type="number"/>
+      <mat-error>
+        <app-form-errors [signalErrors]="form.minimumTreats().errors()"></app-form-errors>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Maximum Number of Treats</mat-label>
+      <input [formField]="form.maximumTreats" matInput type="number"/>
+      <mat-error>
+        <app-form-errors [signalErrors]="form.maximumTreats().errors()"></app-form-errors>
+      </mat-error>
+    </mat-form-field>
   </div>
 </form>
 
 @let name = form.name().value();
 @let specie = form.species().value();
 @let breed = form.breed().value();
+@let minimumTreats = form.minimumTreats().value();
+@let maximumTreats = form.maximumTreats().value();
 
 @if (name && specie && breed) {
-  <p>The {{ specie | lowercase }}, {{ name }}, a(n) {{ breed }}, is {{ age() }} years old</p>
+  <p>The {{ specie | lowercase }}, {{ name }}, a(n) {{ breed }}, is {{ age() }} years old and must be given between {{ minimumTreats }} and {{ maximumTreats }}
+    treats per day</p>
 }
