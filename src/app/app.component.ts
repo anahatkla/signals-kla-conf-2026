@@ -1,15 +1,18 @@
 import {Component} from '@angular/core';
 import {provideNativeDateAdapter} from '@angular/material/core';
-import {SignalFormComponent} from './signal-form/signal-form.component';
-import {StandardFormComponent} from './standard-form/standard-form.component';
+import {AutoCounterComponent} from './auto-counter/auto-counter.component';
 
 @Component({
   selector: 'app-root',
-  imports: [SignalFormComponent, StandardFormComponent],
+  imports: [
+    AutoCounterComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [provideNativeDateAdapter()]
 })
 export class AppComponent {
   title = 'signals-kla-conf-2026';
+
+
 }
