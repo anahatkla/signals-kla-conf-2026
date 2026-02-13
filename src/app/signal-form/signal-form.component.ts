@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, computed, effect, signal} from '@angular/core';
+import {Component, computed, effect, signal} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LowerCasePipe} from '@angular/common';
 import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
@@ -27,12 +27,11 @@ import {FormErrorsComponent} from '../form-errors/form-errors.component';
     MatError,
     FormErrorsComponent
   ],
-  templateUrl: './signal-form.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './signal-form.component.html'
 })
 export class SignalFormComponent {
   protected readonly DataService = DataService;
-  protected readonly breedOptions = computed(() => DataService.breeds[this.form.species().value()]);
+  protected readonly age = computed(() => DateUtility.calculateAge(this.form.dateOfBirth().value()))
   private readonly formDataModel = signal({
     name: "",
     dateOfBirth: new Date(),
@@ -47,7 +46,7 @@ export class SignalFormComponent {
     max(schemaPath.minimumTreats, context => context.valueOf(schemaPath.maximumTreats), {message: "Minimum Treats must be less than Maximum Treats"});
     min(schemaPath.maximumTreats, context => context.valueOf(schemaPath.minimumTreats), {message: "Maximum Treats must be greater than Minimum Treats"});
   });
-  protected readonly age = computed(() => DateUtility.calculateAge(this.form.dateOfBirth().value()))
+  protected readonly breedOptions = computed(() => DataService.breeds[this.form.species().value()]);
 
   constructor() {
     effect(() => {

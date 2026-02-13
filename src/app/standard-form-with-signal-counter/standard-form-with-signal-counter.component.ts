@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, computed, inject, Signal} from '@angular/core';
+import {Component, computed, inject, Signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {toObservable, toSignal} from '@angular/core/rxjs-interop';
@@ -18,7 +18,6 @@ import {AsyncPipe} from '@angular/common';
     AsyncPipe
   ],
   templateUrl: './standard-form-with-signal-counter.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CounterStore]
 })
 export class StandardFormWithSignalCounterComponent {

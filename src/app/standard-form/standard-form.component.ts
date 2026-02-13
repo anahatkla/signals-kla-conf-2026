@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {tap} from 'rxjs';
 import {LowerCasePipe} from '@angular/common';
@@ -25,8 +25,7 @@ import {FormErrorsComponent} from '../form-errors/form-errors.component';
     FormErrorsComponent,
     MatError
   ],
-  templateUrl: './standard-form.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './standard-form.component.html'
 })
 export class StandardFormComponent {
   protected breedOptions: string[] = [];

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core';
+import {Component, computed, signal} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 
 @Component({
@@ -6,8 +6,7 @@ import {MatButton} from '@angular/material/button';
   imports: [
     MatButton
   ],
-  templateUrl: './signal-counter.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './signal-counter.component.html'
 })
 export class SignalCounterComponent {
   protected readonly count = signal(0);
