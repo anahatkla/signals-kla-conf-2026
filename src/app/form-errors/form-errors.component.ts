@@ -1,10 +1,13 @@
 import {Component, computed, input} from '@angular/core';
 import {ValidationError} from '@angular/forms/signals';
 import {ValidationErrors} from '@angular/forms';
+import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-form-errors',
-  imports: [],
+  imports: [
+    JsonPipe
+  ],
   templateUrl: './form-errors.component.html',
 })
 export class FormErrorsComponent {
