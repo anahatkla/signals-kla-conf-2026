@@ -1,9 +1,12 @@
 import {Component} from '@angular/core';
 import {delay, interval, take, tap} from 'rxjs';
+import {DoCheckComponent} from '../child/do-check.component';
 
 @Component({
   selector: 'app-auto-counter',
-  imports: [],
+  imports: [
+    DoCheckComponent
+  ],
   templateUrl: './auto-counter.component.html'
 })
 export class AutoCounterComponent {
