@@ -1,7 +1,9 @@
 <div class="flex gap-6 pt-2 pl-2">
-  <a matButton="outlined" routerLink="/demo/1">Demo 1</a>
-  <a matButton="outlined" routerLink="/demo/2">Demo 2</a>
-  <a matButton="outlined" routerLink="/demo/3">Demo 3</a>
-  <a matButton="outlined" routerLink="/demo/4">Demo 4</a>
-  <a matButton="outlined" routerLink="/demo/5">Demo 5</a>
+  @for (_ of demos; track $index) {
+    <ng-container *ngTemplateOutlet="navButton; context: {$implicit: $index + 1}"/>
+  }
 </div>
+
+<ng-template #navButton let-index>
+  <a #rla="routerLinkActive" [matButton]="rla.isActive ? 'filled': 'outlined'" routerLink="/demo/{{index}}" routerLinkActive>Demo {{ index }}</a>
+</ng-template>
