@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DoCheck} from '@angular/core';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {AutoCounterComponent} from './auto-counter/auto-counter.component';
 
@@ -9,10 +9,11 @@ import {AutoCounterComponent} from './auto-counter/auto-counter.component';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [provideNativeDateAdapter()]
+  providers: [provideNativeDateAdapter()],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title = 'signals-kla-conf-2026';
-
-
+export class AppComponent implements DoCheck {
+  ngDoCheck(): void {
+    console.log("AppComponent DoCheck")
+  }
 }
