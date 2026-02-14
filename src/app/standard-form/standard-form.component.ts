@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {tap} from 'rxjs';
 import {LowerCasePipe} from '@angular/common';
@@ -7,6 +7,7 @@ import {MatOption, MatSelect} from '@angular/material/select';
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
 import {DateUtility} from '../date.utility';
 import {FormErrorsComponent} from '../form-errors/form-errors.component';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-standard-form',
@@ -36,11 +37,8 @@ export class StandardFormComponent {
     breed: new FormControl(""),
   })
   protected age = 0;
-  protected readonly species = ["Dog", "Cat"];
-  private readonly breeds = {
-    "Dog": ["Lab", "Beagle", "Great Dane"],
-    "Cat": ["Sphynx", "American Shorthair", "American Wirehair"]
-  };
+  protected readonly species = DataService.species;
+  private readonly breeds = DataService.breeds;
 
   constructor() {
     this.form.controls.species.valueChanges
