@@ -1,3 +1,21 @@
-<div>{{ count$ | async }}</div>
-<div>{{ doubleCount$ | async }}</div>
-<button matButton="filled" (click)="increment()">Increment</button>
+<div class="flex flex-col gap-2">
+  <div>Count:
+    <ng-container *ngTemplateOutlet="countRef"/>
+  </div>
+  <div>Double Count:
+    <ng-container *ngTemplateOutlet="doubleCountRef"/>
+  </div>
+  <button (click)="increment()" class="w-25" matButton="filled">Increment</button>
+</div>
+
+<ng-template #countRef>
+  {{ count }}
+  <!--  {{ count$ | async }}-->
+  <!--  <app-render [value]="count$ | async"/>-->
+</ng-template>
+
+<ng-template #doubleCountRef>
+  {{ doubleCount }}
+  <!--  {{ doubleCount$ | async }}-->
+  <!--  <app-render [value]="doubleCount$ | async"/>-->
+</ng-template>

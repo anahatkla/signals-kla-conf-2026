@@ -1,11 +1,11 @@
 import {Component, DoCheck} from '@angular/core';
 import {provideNativeDateAdapter} from '@angular/material/core';
-import {AutoCounterComponent} from './auto-counter/auto-counter.component';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   imports: [
-    AutoCounterComponent
+    RouterOutlet
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
