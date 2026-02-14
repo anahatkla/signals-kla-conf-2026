@@ -8,6 +8,8 @@ import {form, FormField, max, min, required} from '@angular/forms/signals';
 import {DateUtility} from '../date.utility';
 import {DataService} from '../data.service';
 import {FormErrorsComponent} from '../form-errors/form-errors.component';
+import {toObservable} from '@angular/core/rxjs-interop';
+import {tap} from 'rxjs';
 
 @Component({
   selector: 'app-signal-form',
@@ -50,9 +52,10 @@ export class SignalFormComponent {
   protected readonly age = computed(() => DateUtility.calculateAge(this.form.dateOfBirth().value()))
 
   constructor() {
-    effect(() => {
-      this.form.species().value();
-      this.form.breed().setControlValue("");
-    });
+    toObservable(this.form.species().value)
+      .pipe(
+        tap(() => this.form.breed().setControlValue(""))
+      )
+      .subscribe();
   }
 }
