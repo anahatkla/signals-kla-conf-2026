@@ -19,9 +19,9 @@ export class AutoCounterComponent {
   private cdr = inject(ChangeDetectorRef);
 
   constructor() {
-    interval(1000).pipe(delay(2000), tap(() => this.count++), take(5)).subscribe();
+    // interval(1000).pipe(delay(2000), tap(() => this.count++), take(5)).subscribe();
     // interval(1000).pipe(delay(2000), tap(() => this.count++), tap(() => this.cdr.markForCheck()), take(5)).subscribe();
     // this.count$ = interval(1000).pipe(delay(2000), map(() => ++this.count), take(5), startWith(this.count));
-    // interval(1000).pipe(delay(2000), tap(() => this.$count.update(x => x + 1)), take(5)).subscribe();
+    interval(1000).pipe(delay(2000), tap(() => this.$count.update(x => x + 1)), take(5)).subscribe();
   }
 }
