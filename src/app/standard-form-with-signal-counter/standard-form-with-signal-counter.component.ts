@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, computed, inject, Signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject, signal, Signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {toObservable, toSignal} from '@angular/core/rxjs-interop';
@@ -26,18 +26,22 @@ export class StandardFormWithSignalCounterComponent {
     multiplier: new FormControl(1)
   })
   protected readonly multiplier: Signal<number>;
-  protected readonly counterStore = inject(CounterStore);
-  protected readonly multipliedResult = computed(() => this.counterStore.count() * this.multiplier());
+  protected readonly $count = signal(0);
+  protected readonly multipliedResult = computed(() => this.$count() * this.multiplier());
   protected readonly multipliedResult$: Observable<number>;
 
   constructor() {
     this.multiplier = toSignal(this.form.controls.multiplier.valueChanges.pipe(startWith(this.form.value.multiplier)))
     this.multipliedResult$ =
       combineLatest([
-        toObservable(this.counterStore.count),
+        toObservable(this.$count),
         this.form.controls.multiplier.valueChanges
           .pipe(startWith(this.form.value.multiplier))
       ])
         .pipe(map(([count, multiplier]) => count * multiplier));
+  }
+
+  protected incrementCount(): void {
+    this.$count.update(x => x + 1);
   }
 }

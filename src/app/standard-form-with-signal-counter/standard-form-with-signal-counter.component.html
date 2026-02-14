@@ -6,8 +6,9 @@
     </mat-form-field>
   </div>
 </form>
-<button (click)="counterStore.incrementCount()" matButton="filled">Increment</button>
 
-Count: {{ counterStore.count() }}
-Multiplied Result Signal: {{ multipliedResult() }}
-Multiplied Result Observable: {{ multipliedResult$ | async }}
+<div>Count: {{ $count() }}</div>
+<div>Multiplied Result Signal: {{ multipliedResult() }}</div>
+<div>Multiplied Result Observable: {{ multipliedResult$ | async }}</div>
+
+<button (click)="incrementCount()" matButton="filled">Increment</button>
