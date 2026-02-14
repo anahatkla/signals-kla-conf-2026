@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {BehaviorSubject, map} from 'rxjs';
 import {AsyncPipe, NgTemplateOutlet} from '@angular/common';
@@ -12,7 +12,8 @@ import {RenderComponent} from '../render/render.component';
     NgTemplateOutlet,
     RenderComponent
   ],
-  templateUrl: './standard-counter.component.html'
+  templateUrl: './standard-counter.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StandardCounterComponent {
   protected readonly count$ = new BehaviorSubject(0);

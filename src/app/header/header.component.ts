@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {NavigationEnd, RouterLink, RouterLinkActive} from "@angular/router";
 import {MatButton} from '@angular/material/button';
 import {NgTemplateOutlet} from '@angular/common';
@@ -12,6 +12,7 @@ import {NgTemplateOutlet} from '@angular/common';
     NgTemplateOutlet
   ],
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
   protected readonly demos = [].constructor(5);

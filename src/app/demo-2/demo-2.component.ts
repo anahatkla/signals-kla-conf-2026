@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {SignalCounterComponent} from '../signal-counter/signal-counter.component';
 
 @Component({
@@ -6,7 +6,8 @@ import {SignalCounterComponent} from '../signal-counter/signal-counter.component
   imports: [
     SignalCounterComponent
   ],
-  templateUrl: './demo-2.component.html'
+  templateUrl: './demo-2.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Demo2Component {
 

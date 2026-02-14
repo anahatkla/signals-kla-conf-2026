@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, signal} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal} from '@angular/core';
 import {RenderComponent} from '../render/render.component';
 import {delay, interval, take, tap} from 'rxjs';
 
@@ -7,7 +7,8 @@ import {delay, interval, take, tap} from 'rxjs';
   imports: [
     RenderComponent
   ],
-  templateUrl: './auto-counter.component.html'
+  templateUrl: './auto-counter.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutoCounterComponent {
   protected count = 1;

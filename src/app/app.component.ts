@@ -1,4 +1,4 @@
-import {Component, DoCheck} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DoCheck} from '@angular/core';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {RouterOutlet} from '@angular/router';
 import {HeaderComponent} from './header/header.component';
@@ -11,7 +11,8 @@ import {HeaderComponent} from './header/header.component';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [provideNativeDateAdapter()]
+  providers: [provideNativeDateAdapter()],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements DoCheck {
   ngDoCheck(): void {

@@ -1,9 +1,10 @@
-import {Component, DoCheck, Input, OnChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DoCheck, Input, OnChanges} from '@angular/core';
 
 @Component({
   selector: 'app-render',
   imports: [],
-  templateUrl: './render.component.html'
+  templateUrl: './render.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RenderComponent implements DoCheck, OnChanges {
   @Input() public value: number;

@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {CounterStore} from '../counter.store';
 
@@ -8,7 +8,8 @@ import {CounterStore} from '../counter.store';
     MatButton
   ],
   templateUrl: './signal-counter-with-store.component.html',
-  providers: [CounterStore]
+  providers: [CounterStore],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignalCounterWithStoreComponent {
   protected readonly counterStore = inject(CounterStore);

@@ -1,4 +1,4 @@
-import {Component, computed, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core';
 import {ValidationError} from '@angular/forms/signals';
 import {ValidationErrors} from '@angular/forms';
 import {JsonPipe} from '@angular/common';
@@ -9,6 +9,7 @@ import {JsonPipe} from '@angular/common';
     JsonPipe
   ],
   templateUrl: './form-errors.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormErrorsComponent {
   public readonly signalErrors = input<ValidationError.WithField[]>();
