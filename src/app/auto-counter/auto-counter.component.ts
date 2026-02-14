@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal} from '@angular/core';
 import {RenderComponent} from '../render/render.component';
-import {delay, interval, map, Observable, take, tap} from 'rxjs';
+import {delay, interval, map, Observable, startWith, take, tap} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 
 @Component({
@@ -19,9 +19,9 @@ export class AutoCounterComponent {
   private cdr = inject(ChangeDetectorRef);
 
   constructor() {
-    interval(1000).pipe(delay(2000), tap(() => this.count++), take(5)).subscribe();
+    // interval(1000).pipe(delay(2000), tap(() => this.count++), take(5)).subscribe();
     // interval(1000).pipe(delay(2000), tap(() => this.count++), tap(() => this.cdr.markForCheck()), take(5)).subscribe();
-    this.count$ = interval(1000).pipe(delay(2000), map(() => ++this.count), take(5));
-    // interval(1000).pipe(delay(2000), tap(() => this.$count.update(x => x + 1)), take(5)).subscribe();
+    // this.count$ = interval(1000).pipe(delay(2000), map(() => ++this.count), take(5), startWith(this.count));
+    interval(1000).pipe(delay(2000), tap(() => this.$count.update(x => x + 1)), take(5)).subscribe();
   }
 }
