@@ -9,8 +9,7 @@ import {AsyncPipe} from '@angular/common';
     RenderComponent,
     AsyncPipe
   ],
-  templateUrl: './auto-counter.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './auto-counter.component.html'
 })
 export class AutoCounterComponent {
   protected count = 1;
